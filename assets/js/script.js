@@ -35,12 +35,17 @@ function init() {
     $('#workhours').children().each(function(index, element) {
         var localHour = $(this).attr('id');
         var storedAppt = localStorage.getItem(localHour);
-        console.log(storedAppt)
         if (storedAppt !== null) {
             $(this).children('.description').val(storedAppt)
         } 
     })
 }
+
+// reset button to clear local storage and blank out description fields
+$('#resetbtn').click(function () {
+    localStorage.clear();
+    $('.description').val("");
+})
 
 // runs init function on page load
 init();
