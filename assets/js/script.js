@@ -1,16 +1,14 @@
-// TODO:
-// function to check current hour
-// add past/present/future classes to hours based on current time
-// local storage setting for each hour
-
+// Sets Current Day
 var currentDay = moment().format('dddd, MMM Do YYYY');
 $('#currentDay').html(currentDay);
 
+// Assigns each row a data-index and runs the timeColor function
 $('#workhours').children().each(function(index, element) {
     var eachHour = parseInt($(this).data("hour"));
     timeColor(eachHour, $(this))
 })
 
+// timeColor function checks if the hour is past/present/future and adds the corresponding class
 function timeColor(momentHour, timeBlock) {
     var currentHour = moment().hour();
     if (momentHour === currentHour) {
@@ -25,12 +23,14 @@ function timeColor(momentHour, timeBlock) {
     }
 }
 
+// Eventhandler for the save buttons to save to local storage
 $('.saveBtn').click(function () { 
     var text = $(this).siblings('.description').val();
     var hour = $(this).parent().attr('id');
     localStorage.setItem(hour, text);
 })
 
+// init function to check local storage and populate text boxes with saved items
 function init() {
     $('#workhours').children().each(function(index, element) {
         var localHour = $(this).attr('id');
@@ -42,4 +42,5 @@ function init() {
     })
 }
 
+// runs init function on page load
 init();
