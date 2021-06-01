@@ -35,6 +35,7 @@ function init() {
     $('#workhours').children().each(function(index, element) {
         var localHour = $(this).attr('id');
         var storedAppt = localStorage.getItem(localHour);
+        console.log(storedAppt)
         if (storedAppt !== null) {
             $(this).children('.description').val(storedAppt)
         } 
